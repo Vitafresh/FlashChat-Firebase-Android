@@ -2,16 +2,26 @@ package com.vitafresh.flashchatnewfirebase;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class LoginActivity extends AppCompatActivity {
+    //Firebase
+    private FirebaseAuth mAuth;
 
     // TODO: Add member variables here:
     // UI references.
@@ -38,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // TODO: Grab an instance of FirebaseAuth
+        mAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -56,6 +67,31 @@ public class LoginActivity extends AppCompatActivity {
 
     // TODO: Complete the attemptLogin() method
     private void attemptLogin() {
+        String email = mEmailView.getText().toString();
+        String pass = mPasswordView.getText().toString();
+        if(email.length() == 0 || pass.length() == 0){
+            return;
+        }
+
+        Toast toast = Toast.makeText(getApplicationContext(),"Login in progress...",Toast.LENGTH_LONG);
+        toast.show();
+        mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.d("FlashChat", "attemptLogin onComplete: " + task.isSuccessful());
+
+                if(!task.isSuccessful()){
+                    Log.d("FlashChat","Login failed! " + task.getException());
+                }
+                else{
+                    Intent intent = new Intent(LoginActivity.this, MainChatActivity.class);
+                    finish();
+                    startActivity(intent);
+                }
+
+
+            }
+        });
 
 
         // TODO: Use FirebaseAuth to sign in with email & password
