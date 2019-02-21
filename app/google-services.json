@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "501756397581",
+    "firebase_url": "https://viflashchatandroid.firebaseio.com",
+    "project_id": "viflashchatandroid",
+    "storage_bucket": "viflashchatandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501756397581:android:cca284716cc0322b",
+        "android_client_info": {
+          "package_name": "com.vitafresh.flashchatnewfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "501756397581-37unl0bdlqblfatmhpsv34cft2lecbu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4zzd-K9cn-hub2MMijMx8rNCd9LGU5no"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
