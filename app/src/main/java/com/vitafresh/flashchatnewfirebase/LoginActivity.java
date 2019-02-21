@@ -3,6 +3,7 @@ package com.vitafresh.flashchatnewfirebase;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -55,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
     // Executed when Sign in button pressed
     public void signInExistingUser(View v)   {
         // TODO: Call attemptLogin() here
-
+        attemptLogin(); 
     }
 
     // Executed when Register button pressed
@@ -82,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(!task.isSuccessful()){
                     Log.d("FlashChat","Login failed! " + task.getException());
+                    showErrorDialog("There was a problem signing in.");
                 }
                 else{
                     Intent intent = new Intent(LoginActivity.this, MainChatActivity.class);
@@ -101,7 +103,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // TODO: Show error on screen with an alert dialog
+    private void showErrorDialog(String message){
+        new AlertDialog.Builder(this)
+                .setTitle("Ooops")
+                .setMessage(message)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.ok,null)
+                .show();
 
+    }
 
 
 }
