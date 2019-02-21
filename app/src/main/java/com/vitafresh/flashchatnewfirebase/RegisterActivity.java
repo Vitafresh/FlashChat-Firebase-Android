@@ -170,7 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
     // TODO: Save the display name to Shared Preferences
     private void saveDisplayName(){
         String displayName = mUsernameView.getText().toString();
-        SharedPreferences prefs = getSharedPreferences(CHAT_PREFS,0);
+        SharedPreferences prefs = getSharedPreferences(CHAT_PREFS, MODE_PRIVATE);
         prefs.edit().putString(DISPLAY_NAME_KEY, displayName).apply();
 
     }

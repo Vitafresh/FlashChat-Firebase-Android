@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        Toast toast = Toast.makeText(getApplicationContext(),"Login in progress...",Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(getApplicationContext(),"Login in progress...",Toast.LENGTH_SHORT);
         toast.show();
         mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
