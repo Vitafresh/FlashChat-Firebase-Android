@@ -24,6 +24,8 @@ public class MainChatActivity extends AppCompatActivity {
     private ImageButton mSendButton;
     private DatabaseReference mDatabaseReference;
 
+    private ChatListAdaptor mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +86,13 @@ public class MainChatActivity extends AppCompatActivity {
     }
 
     // TODO: Override the onStart() lifecycle method. Setup the adapter here.
+    @Override
+    public void onStart(){
+        super.onStart();
+        mAdapter = new ChatListAdaptor(this,mDatabaseReference, mDisplayName);
+        mChatListView.setAdapter(mAdapter);
+
+    }
 
 
     @Override
@@ -91,7 +100,7 @@ public class MainChatActivity extends AppCompatActivity {
         super.onStop();
 
         // TODO: Remove the Firebase event listener on the adapter.
-
+        mAdapter.cleanup();
     }
 
 }
