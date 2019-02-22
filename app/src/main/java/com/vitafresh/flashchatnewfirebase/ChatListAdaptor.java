@@ -1,6 +1,8 @@
 package com.vitafresh.flashchatnewfirebase;
 
 import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -38,7 +40,7 @@ public class ChatListAdaptor extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public InstantMessage getItem(int i) {
         return null;
     }
 
@@ -49,6 +51,23 @@ public class ChatListAdaptor extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+        if (view == null){
+            LayoutInflater inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.chat_msg_row, viewGroup, false);
+            final ViewHolder holder = new ViewHolder();
+            holder.authorName = (TextView) view.findViewById(R.id.author);
+            holder.messageBody = (TextView) view.findViewById(R.id.messageInput);
+            holder.params = (LinearLayout.LayoutParams)holder.authorName.getLayoutParams();
+            view.setTag(holder);
+        }
+        final  InstantMessage message = getItem(i);
+        final ViewHolder holder = (ViewHolder)view.getTag();
+        String author = message.getAuthor();
+        holder.authorName.setText(author);
+        String msg = message.getMessage();
+        holder.messageBody.setText(msg);
+        
+
+        return view;
     }
 }
